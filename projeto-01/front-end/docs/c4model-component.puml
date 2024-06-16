@@ -1,0 +1,71 @@
+@startuml TarefaAPI_Specification
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+System_Boundary(tarefaApiBoundary, "Todo List Application") {
+
+    Container(todoWrapper, "TodoWrapper", "React Component", "Componente principal que gerencia o estado e as operações das tarefas") {
+        Component fetchTasks
+        Component addTodo
+        Component handleCheckboxChange
+        Component handleDelete
+        Component handleConfirm
+    }
+
+    Container(todoForm, "TodoForm", "React Component", "Formulário para adicionar novas tarefas") {
+        Component handleChange
+        Component handleTitleChange
+        Component handlePriorityChange
+        Component handleDataEsperadaChange
+        Component handleDiasPrevistoChange
+        Component handleAddTarefa
+    }
+
+    Container(todoList, "TodoList", "React Component", "Lista de tarefas") {
+        Component calculateDeliveryMessage
+        Component onCheckboxChange
+        Component onDelete
+    }
+
+    Container(dialogComponent, "DialogComponent", "React Component", "Diálogo para confirmação de ações") {
+        Component onClose
+        Component onConfirm
+    }
+
+    Rel(todoWrapper, fetchTasks, "Invoca")
+    Rel(todoWrapper, addTodo, "Invoca")
+    Rel(todoWrapper, handleCheckboxChange, "Invoca")
+    Rel(todoWrapper, handleDelete, "Invoca")
+    Rel(todoWrapper, handleConfirm, "Invoca")
+
+    Rel(todoForm, handleChange, "Invoca")
+    Rel(todoForm, handleTitleChange, "Invoca")
+    Rel(todoForm, handlePriorityChange, "Invoca")
+    Rel(todoForm, handleDataEsperadaChange, "Invoca")
+    Rel(todoForm, handleDiasPrevistoChange, "Invoca")
+    Rel(todoForm, handleAddTarefa, "Invoca")
+
+    Rel(todoList, calculateDeliveryMessage, "Invoca")
+    Rel(todoList, onCheckboxChange, "Invoca")
+    Rel(todoList, onDelete, "Invoca")
+
+    Rel(dialogComponent, onClose, "Invoca")
+    Rel(dialogComponent, onConfirm, "Invoca")
+
+    ' Interligando os containers
+    Rel(todoWrapper, todoForm, "Usa")
+    Rel(todoWrapper, todoList, "Usa")
+    Rel(todoWrapper, dialogComponent, "Usa")
+
+    Rel(todoForm, todoWrapper, "Comunica")
+    Rel(todoList, todoWrapper, "Comunica")
+    Rel(dialogComponent, todoWrapper, "Comunica")
+}
+
+Container(todoApi, "Todo API", "Spring Boot Application", "API para gerenciar operações de tarefas") {
+    Component tarefaController
+}
+
+Rel(todoWrapper, tarefaController, "Comunica", "HTTP")
+
+@enduml
