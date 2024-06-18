@@ -22,4 +22,9 @@ public class TarefaDTOPrazo extends TarefaDTO {
         super(titulo, prioridade, tipo, status);
         this.diasPrevisto = diasPrevisto;
     }
+
+    public TarefaDTOPrazo(Long id, String titulo, Prioridade prioridade, TipoTarefa tarefa, Boolean status, int diasPrevisto) {
+        super(id, titulo, prioridade, tarefa, status);
+        this.diasPrevisto = diasPrevisto;
+    }
 }

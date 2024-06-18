@@ -40,6 +40,8 @@ const TodoWrapper = () => {
       axios.post(endpoint)
         .then(response => {
           setRows(rows.map(row => {
+            console.log(row.id)
+            console.log(selectedTask.id)
             if (row.id === selectedTask.id) {
               return { ...row, completed: !row.completed };
             }

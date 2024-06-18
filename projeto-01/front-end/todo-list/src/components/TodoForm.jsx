@@ -4,7 +4,7 @@ import { TextField, FormControl, InputLabel, MenuItem, Select, Grid, Button } fr
 const TodoForm = ({ addTodo }) => {
   const [age, setAge] = useState('LIVRE');
   const [title, setTitle] = useState('');
-  const [priority, setPriority] = useState('');
+  const [priority, setPriority] = useState('BAIXA');
   const [dataEsperada, setDataEsperada] = useState('');
   const [diasPrevisto, setDiasPrevisto] = useState('');
 

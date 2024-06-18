@@ -95,7 +95,7 @@ public class TarefaServiceImpl implements TarefaService {
         final TipoTarefa tipo = TipoTarefa.DATA;
         List<TarefaDTOData> tarefasData = new ArrayList<>();
         for (TarefaData tarefaData : tarefaRepository.findByTarefaData(TipoTarefa.DATA)) {
-            tarefasData.add(new TarefaDTOData(tarefaData.getTitulo(), tarefaData.getPrioridade(),tipo,tarefaData.getStatus(), tarefaData.getDataEsperada()));
+            tarefasData.add(new TarefaDTOData(tarefaData.getId(),tarefaData.getTitulo(), tarefaData.getPrioridade(),tipo,tarefaData.getStatus(), tarefaData.getDataEsperada()));
         }
         return tarefasData;
     }
@@ -108,7 +108,7 @@ public class TarefaServiceImpl implements TarefaService {
         for (TarefaData tarefaPrazo : tarefas) {
             LocalDate hoje = LocalDate.now();
             int diasFaltantes = (int) ChronoUnit.DAYS.between(hoje, tarefaPrazo.getDataEsperada());
-            tarefasPrazo.add(new TarefaDTOPrazo(tarefaPrazo.getTitulo(), tarefaPrazo.getPrioridade(),tipo,tarefaPrazo.getStatus(), diasFaltantes));
+            tarefasPrazo.add(new TarefaDTOPrazo(tarefaPrazo.getId(),tarefaPrazo.getTitulo(), tarefaPrazo.getPrioridade(),tipo,tarefaPrazo.getStatus(), diasFaltantes));
         }
         return tarefasPrazo;
     }
@@ -118,7 +118,7 @@ public class TarefaServiceImpl implements TarefaService {
         final TipoTarefa tipo = TipoTarefa.LIVRE;
         List<TarefaDTOLivre> tarefasLivre = new ArrayList<>();
         for (TarefaLivre tarefaLivre : tarefaRepository.findByLivre(TipoTarefa.LIVRE)) {
-            tarefasLivre.add(new TarefaDTOLivre(tarefaLivre.getTitulo(), tarefaLivre.getPrioridade(), tipo,tarefaLivre.getStatus()));
+            tarefasLivre.add(new TarefaDTOLivre(tarefaLivre.getId(),tarefaLivre.getTitulo(), tarefaLivre.getPrioridade(), tipo,tarefaLivre.getStatus()));
         }
         return tarefasLivre;
     }

@@ -14,4 +14,7 @@ public class TarefaDTOLivre extends TarefaDTO {
         super(titulo, prioridade, tipo, status);
     }
 
-   }
+    public TarefaDTOLivre(Long id, String titulo, Prioridade prioridade, TipoTarefa tarefa, Boolean status) {
+        super(id, titulo, prioridade, tarefa, status);
+    }
+}
